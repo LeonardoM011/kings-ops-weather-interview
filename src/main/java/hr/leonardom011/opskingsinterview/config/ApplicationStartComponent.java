@@ -23,7 +23,7 @@ public class ApplicationStartComponent {
     }
 
     @PostConstruct
-    public void init() throws JsonProcessingException {
+    public void init() {
         List<WeatherDTO> weatherDTO = weatherService.getWeatherStats();
 
         log.info(weatherDTO.toString());

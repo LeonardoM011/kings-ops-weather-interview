@@ -1,6 +1,5 @@
 package hr.leonardom011.opskingsinterview.scenario.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hr.leonardom011.opskingsinterview.exception.ScenarioServiceException;
 import hr.leonardom011.opskingsinterview.scenario.model.response.PublicHolidayInfo;
