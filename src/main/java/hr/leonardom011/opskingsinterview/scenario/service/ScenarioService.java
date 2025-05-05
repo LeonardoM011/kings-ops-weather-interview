@@ -9,6 +9,6 @@ import java.util.List;
 public interface ScenarioService {
 
     List<WeatherInfo> getWeatherStats() throws JsonProcessingException;
-    PublicHoliday getPublicHolidays();
+    List<PublicHoliday> getPublicHolidays();
 
 }

@@ -52,7 +52,20 @@ public class ScenarioServiceImpl implements ScenarioService {
     }
 
     @Override
-    public PublicHoliday getPublicHolidays() {
-        return null;
+    // Todo: Handle 429 too many requests
+    public List<PublicHoliday> getPublicHolidays() {
+        log.info("Starting HTTP GET {}", publicHolidayApiUrl);
+        ResponseEntity<List<PublicHoliday>> response = restTemplate.exchange(
+                publicHolidayApiUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<>() {}
+        );
+        if (!response.getStatusCode().is2xxSuccessful()) {
+            log.error("Client error occurred while fetching public holidays");
+            throw new ScenarioServiceException(response.getStatusCode(), "Client error occurred while fetching public holidays");
+        }
+        log.info("Completed HTTP GET {} Response status code: {}", publicHolidayApiUrl, response.getStatusCode());
+        return response.getBody();
     }
 }
