@@ -3,7 +3,7 @@ package hr.leonardom011.opskingsinterview.scenario.service.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hr.leonardom011.opskingsinterview.exception.ScenarioServiceException;
-import hr.leonardom011.opskingsinterview.scenario.model.response.PublicHoliday;
+import hr.leonardom011.opskingsinterview.scenario.model.response.PublicHolidayInfo;
 import hr.leonardom011.opskingsinterview.scenario.model.response.WeatherInfo;
 import hr.leonardom011.opskingsinterview.scenario.service.ScenarioService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class ScenarioServiceImpl implements ScenarioService {
 
 
     @Override
-    public List<WeatherInfo> getWeatherStats() throws JsonProcessingException {
+    public List<WeatherInfo> getWeatherStats() {
         log.info("Starting HTTP GET {}", weatherStatsApiUrl);
         ResponseEntity<List<WeatherInfo>> response = restTemplate.exchange(
                 weatherStatsApiUrl,
@@ -53,9 +53,9 @@ public class ScenarioServiceImpl implements ScenarioService {
 
     @Override
     // Todo: Handle 429 too many requests
-    public List<PublicHoliday> getPublicHolidays() {
+    public List<PublicHolidayInfo> getPublicHolidays() {
         log.info("Starting HTTP GET {}", publicHolidayApiUrl);
-        ResponseEntity<List<PublicHoliday>> response = restTemplate.exchange(
+        ResponseEntity<List<PublicHolidayInfo>> response = restTemplate.exchange(
                 publicHolidayApiUrl,
                 HttpMethod.GET,
                 null,
